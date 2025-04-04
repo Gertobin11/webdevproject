@@ -1,0 +1,93 @@
+/* navbar */
+
+body {
+  font-family: "Raleway", "sans-serif";
+  padding-top: 40px;
+}
+
+#mainNavbar {
+  font-size: 1.5rem;
+  font-weight: 100;
+  background-color: #6B4D57;
+  z-index: 3;
+}
+
+#mainNavbar .nav-link {
+  color: white;
+}
+
+#mainNavbar .nav-link:hover {
+  color: #13070C;
+}
+
+#mainNavbar .navbar-brand {
+  font-size: 2rem;
+  color: white;
+  font-weight: 100;
+}
+
+/* HERO SECTION */
+/* inspired by Colt steele udemy course */
+/* https://www.udemy.com/course/bootstrap-4-bootcamp */
+
+#heroSection {
+  /* Photo by Cliff  Booth: https://www.pexels.com/photo/photo-of-women-stretching-together-4056723/ */
+  background: url("../images/tinified/pexels-cliff-booth-4056723.jpg");
+  min-height: 1000px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+#header {
+  z-index: 2;
+}
+
+#heroSection h1 {
+  font-family: "Questrial", sans-serif;
+  line-height: 1;
+}
+
+#bookNow {
+  font-size: 1.5rem;
+  border-radius: 2rem;
+}
+
+#overlay {
+  background: rgba(0,0,0,0.4);
+  position:absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+#contactTable {
+  font-family: "Nunito", sans-serif;
+}
+
+
+/* GALLERY */
+/* https://www.codewithrandom.com/2023/10/20/image-hover-border-effect-css/ */
+#gallerySection img:hover{
+  border:8px solid #6B4D57;
+  transition-duration: 0.4s;
+
+
+/* MEDIA QUERIES */
+
+@media(max-width: 768px){
+  .navbar {
+    background: #1f1f1f;
+  }
+
+  #heroSection {
+    min-height: 500px
+  }
+
+  #heroSection h1 {
+    font-size: 4rem;
+  }
+}
