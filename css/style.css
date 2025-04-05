@@ -10,6 +10,7 @@ body {
   font-weight: 100;
   background-color: black;
   z-index: 3;
+  text-transform: uppercase;
 }
 
 #mainNavbar .nav-link {
@@ -31,8 +32,9 @@ body {
 /* https://www.udemy.com/course/bootstrap-4-bootcamp */
 
 #heroSection {
-  /* Photo by Cliff  Booth: https://www.pexels.com/photo/photo-of-women-stretching-together-4056723/ */
-  background: url("../images/tinified/pexels-cliff-booth-4056723.jpg");
+  /* Photo by Kelly    : https://www.pexels.com/photo/aerial-photography-of-rock-next-to-water-body-2382681/ */
+  background: url("../images/WAW_images/pexels-kelly-1179532-2382681.jpg");
+  text-transform: uppercase;
   min-height: 1000px;
   background-repeat: no-repeat;
   background-size: cover;
