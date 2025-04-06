@@ -76,6 +76,43 @@ body {
 #gallerySection img:hover{
   border:8px solid #6B4D57;
   transition-duration: 0.4s;
+}
+
+/* QUIZ */ 
+
+#game-board {
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  /* back ground image from  https://pixabay.com/photos/ireland-dunquin-paper-dingle-iceland-202511/ */
+  background-image: url("/static/images/WAW_images/dunquin-harbour.jpg");
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-board-opaque-cover {
+  position: absolute;
+  background-color: #13070C;
+  opacity: .7;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+}
+
+#game-contents {
+  width: 100%;
+  width: 100%;
+  padding: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 
 /* MEDIA QUERIES */
