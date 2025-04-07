@@ -98,7 +98,7 @@ function generateButton(text) {
 
 function generateOptionButton(text, submitButton) {
     const button = generateButton(text);
-    button.classList.add("btn", "btn-primary", "z-3", "w-50", "my-1");
+    button.classList.add("btn", "btn-primary", "z-3", "w-50", "my-1", "options");
     button.addEventListener("click", () => handleOptionClick(text, submitButton))
     button.dataset.answer = text;
     return button;
@@ -131,7 +131,11 @@ function generateNextButton() {
 }
 
 function checkAnswer(question, button) {
-    button.disabled = true;
+    game.removeChild(button)
+    const options = document.getElementsByClassName("options");
+    for (let option of options) {
+        option.disabled = true;
+    }
     const answerButton = document.querySelector(
         `button[data-answer="${currentAnswer}"]`
     );
