@@ -1,12 +1,13 @@
 let currentAnswer = "";
 let score = 0;
 let currentQuestionIndex = 0;
-const startButton = document.getElementById("start-button");
 
 const questions = await getQuestions();
 const randomQuestions = getRandomQuestions(questions, 10);
 const game = document.getElementById("game-contents");
 
+// get the start button and add a click event to display the first question
+const startButton = document.getElementById("start-button");
 startButton.addEventListener("click", () =>
     displayQuestion(randomQuestions[0])
 );
@@ -21,8 +22,8 @@ const discountCodes = [
     "quiz-14",
     "quiz-16",
     "quiz-18",
-    "quiz-20"
-  ]
+    "quiz-20",
+];
 
 async function getQuestions() {
     // question got from https://opentdb.com/
@@ -57,7 +58,7 @@ async function getQuestions() {
 function getRandomQuestions(questions, amount) {
     const randomQuestions = [];
     while (randomQuestions.length < amount) {
-        const randomIndex = Math.floor(Math.random() * (questions.length));
+        const randomIndex = Math.floor(Math.random() * questions.length);
         const randomQuestion = questions[randomIndex];
         if (!randomQuestions.includes(randomQuestion)) {
             randomQuestions.push(randomQuestion);
@@ -69,13 +70,7 @@ function getRandomQuestions(questions, amount) {
 
 function generateHeading(text) {
     const heading = document.createElement("h1");
-    heading.classList.add(
-        "display-1",
-        "p-2",
-        "text-center",
-        "text-white",
-        "z-3"
-    );
+    heading.classList.add("p-2", "text-center", "text-white", "z-3");
     heading.textContent = text;
     return heading;
 }
@@ -98,14 +93,23 @@ function generateButton(text) {
 
 function generateOptionButton(text, submitButton) {
     const button = generateButton(text);
-    button.classList.add("btn", "btn-primary", "z-3", "w-50", "my-1", "options");
-    button.addEventListener("click", () => handleOptionClick(text, submitButton))
+    button.classList.add(
+        "btn",
+        "btn-primary",
+        "z-3",
+        "my-1",
+        "options",
+        "w-50"
+    );
+    button.addEventListener("click", () =>
+        handleOptionClick(text, submitButton)
+    );
     button.dataset.answer = text;
     return button;
 }
 
 function handleOptionClick(text, button) {
-    currentAnswer = text
+    currentAnswer = text;
     button.disabled = false;
 }
 
@@ -115,13 +119,13 @@ function generateSubmitButton(question) {
     button.id = "submit";
     button.disabled = true;
     button.addEventListener("click", () => checkAnswer(question, button));
-    button.classList.add("btn-success");
+    button.classList.add("btn-success", "mt-3");
     return button;
 }
 
 function generateNextButton() {
     const button = generateButton();
-    button.classList.add("btn-success");
+    button.classList.add("btn-success", "mt-3");
     button.textContent = "Next";
     currentQuestionIndex += 1;
     button.addEventListener("click", () =>
@@ -131,7 +135,7 @@ function generateNextButton() {
 }
 
 function checkAnswer(question, button) {
-    game.removeChild(button)
+    game.removeChild(button);
     const options = document.getElementsByClassName("options");
     for (let option of options) {
         option.disabled = true;
@@ -160,22 +164,20 @@ function displayQuestion(question) {
     if (currentQuestionIndex < randomQuestions.length) {
         game.replaceChildren();
         const questionText = generateHeading(
-            `Question ${currentQuestionIndex + 1} / 10`
+            `Question ${currentQuestionIndex + 1} / ${randomQuestions.length}`
         );
         questionText.classList.add("fs-1");
         game.appendChild(questionText);
         const paragraph = generateParagraph(question.question);
-        paragraph.classList.add("display-4");
         game.appendChild(paragraph);
         const submitButton = generateSubmitButton(question);
         for (let option of question.options) {
             const optionButton = generateOptionButton(option, submitButton);
             game.appendChild(optionButton);
         }
-        game.appendChild(submitButton)
-    }
-    else{
-        gameover()
+        game.appendChild(submitButton);
+    } else {
+        gameover();
     }
 }
 
@@ -183,20 +185,42 @@ function gameover() {
     let paragraph;
     game.replaceChildren();
     const scoreText = generateHeading(
-        `Score ${score} / 10`
+        `Score ${score} / ${randomQuestions.length}`
     );
-    game.appendChild(scoreText)
-    const code = discountCodes[score]
-    if(score > 0) {
-        paragraph = generateParagraph("Congratulations on the result your discount code is");
+    game.appendChild(scoreText);
+    const code = discountCodes[score];
+    if (score > 0) {
+        paragraph = generateParagraph(
+            "Congratulations on the result your discount code is"
+        );
+    } else {
+        paragraph = generateParagraph(
+            "Unfortunately, you have not answered any correct, but heres a discount code for trying"
+        );
     }
-    else {
-        paragraph = generateParagraph("Unfortunately, you have not answered any correct, but heres a discount code for trying");
-    }
-    game.appendChild(paragraph)
+    game.appendChild(paragraph);
     const codeText = document.createElement("h4");
-    codeText.classList.add("text-white")
+    codeText.classList.add("text-white");
     codeText.textContent = code;
-    game.appendChild(codeText)
+    game.appendChild(codeText);
 
+    // check to see if there is a previous code, if there is not, or else it is a lower code, we set the new entry
+    let previousCode = localStorage.getItem("code");
+    if (
+        !previousCode ||
+        discountCodes.indexOf(previousCode) < discountCodes.indexOf(code)
+    ) {
+        localStorage.setItem("code", code);
+    }
+
+    const codeParagraph = generateParagraph(
+        "We have saved this code in your browser and will populate the form with it, so don't worry if you forget it!"
+    );
+    game.appendChild(codeParagraph)
+    
+    const button = generateButton("Replay");
+    button.addEventListener("click", () => {
+        window.location = "quiz.html";
+    });
+    game.appendChild(button);
 }
