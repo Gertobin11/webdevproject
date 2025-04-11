@@ -95,7 +95,6 @@ function generateOptionButton(text, submitButton) {
     const button = generateButton(text);
     button.classList.add(
         "btn",
-        "btn-primary",
         "z-3",
         "my-1",
         "options",
