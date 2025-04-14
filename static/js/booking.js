@@ -1,5 +1,6 @@
 let discount = 0;
 let totalCost = 0;
+let amountSaved = 0;
 let numberOfPeople = 1;
 let route;
 let fullname;
@@ -7,7 +8,9 @@ let withLunch = false;
 let date;
 let email;
 let total = document.getElementById("total-cost");
-total.textContent = "Please select route to see price calculation";
+let amountSavedSpan = document.getElementById("amount-saved");
+let totalCostModal = document.getElementById("total-cost-modal");
+let amountSavedModal = document.getElementById("amount-saved-modal");
 
 let validatedObject = {
     route: false,
@@ -93,6 +96,24 @@ if (form) {
     createAlert("Unable to calculate total, contact support", "error");
 }
 
+// simulates a successful form submission to the backend and notifies the user
+const enquiryBtn = document.getElementById("handle-enquiry");
+if (enquiryBtn) {
+    enquiryBtn.addEventListener("click", () => {
+        createAlert("Booking Enquiry successfully submitted", "success");
+        // reset the form to initial state
+        form.reset();
+        amountSaved = 0;
+        totalCost = 0;
+        total.textContent = totalCost;
+        amountSavedSpan.textContent = 0;
+        totalCostModal.textContent = 0;
+        amountSavedModal.textContent = 0;
+    });
+} else {
+    createAlert("Unable to complete booking, please try again", "error");
+}
+
 const routeToPriceObject = {
     1: {
         name: "Tralee - Kinsale",
@@ -118,8 +139,6 @@ function calculateTotalCost() {
             // get the route and price object nested inside the the number key and filter the result by the matching name
             const routeWithPrice = Object.values(routeToPriceObject).filter(
                 (routeToPrice) => {
-                    console.log(routeToPrice);
-                    console.log(route);
                     return routeToPrice.name === route;
                 }
             );
@@ -131,9 +150,15 @@ function calculateTotalCost() {
                     groupPrice = groupPrice + numberOfPeople * 10;
                 }
                 if (discount) {
-                    groupPrice = groupPrice - groupPrice * (discount / 100);
+                    amountSaved = groupPrice * discount;
+                    groupPrice = groupPrice - amountSaved;
                 }
-                total.textContent = groupPrice;
+
+                // display the calculated prices and have only 2 decimal places
+                total.textContent = groupPrice.toFixed(2);
+                totalCostModal.textContent = `€ ${groupPrice.toFixed(2)}`;
+                amountSavedSpan.textContent = amountSaved.toFixed(2);
+                amountSavedModal.textContent = `€ ${amountSaved.toFixed(2)}`;
             } else {
                 throw new Error("Route Selected Not Valid");
             }
@@ -144,16 +169,16 @@ function calculateTotalCost() {
 }
 
 const discountCodes = {
-    "quiz-2": 2,
-    "quiz-4": 4,
-    "quiz-6": 6,
-    "quiz-8": 8,
-    "quiz-10": 10,
-    "quiz-12": 12,
-    "quiz-14": 14,
-    "quiz-16": 16,
-    "quiz-18": 18,
-    "quiz-20": 20,
+    "quiz-2": 0.02,
+    "quiz-4": 0.04,
+    "quiz-6": 0.06,
+    "quiz-8": 0.08,
+    "quiz-10": 0.1,
+    "quiz-12": 0.12,
+    "quiz-14": 0.14,
+    "quiz-16": 0.16,
+    "quiz-18": 0.18,
+    "quiz-20": 0.2,
 };
 
 /*
@@ -190,7 +215,11 @@ function validateFullname(enteredFullname) {
     // remove old errors if present
     let fullnameErrorDiv = document.getElementById("fullname-error");
     if (fullnameErrorDiv) {
-        fullnameErrorDiv.textContent = ""
+        fullnameErrorDiv.textContent = "";
+        // add a red border to the input element to highlight error
+        fullnameErrorDiv.previousElementSibling.classList.remove(
+            "error-border"
+        );
     }
     // ensure the name is longer than 3
     if (enteredFullname.length >= 3) {
@@ -199,6 +228,10 @@ function validateFullname(enteredFullname) {
     } else {
         // attempt to set the error message in the error div under the import
         if (fullnameErrorDiv) {
+            // add a red border to the input element to highlight error
+            fullnameErrorDiv.previousElementSibling.classList.add(
+                "error-border"
+            );
             fullnameErrorDiv.textContent =
                 "Invalid Input: Please enter a name longer then 3 characters";
         } else {
@@ -214,9 +247,11 @@ function validateFullname(enteredFullname) {
 
 function validateEmail(enteredEmail) {
     // remove old error if present
-    const numberErrorDiv = document.getElementById("number-error")
-    if (numberErrorDiv) {
-        numberErrorDiv.textContent = ""
+    const emailErrorDiv = document.getElementById("email-error");
+    if (emailErrorDiv) {
+        emailErrorDiv.textContent = "";
+        // add a red border to the input element to highlight error
+        emailErrorDiv.previousElementSibling.classList.remove("error-border");
     }
     // ensure the name is longer than 3
     if (
@@ -229,6 +264,8 @@ function validateEmail(enteredEmail) {
     } else {
         // attempt to set the error message in the error div under the import
         if (emailErrorDiv) {
+            // add a red border to the input element to highlight error
+            emailErrorDiv.previousElementSibling.classList.add("error-border");
             emailErrorDiv.textContent =
                 "Invalid Input: Please enter a valid email";
         } else {
@@ -244,6 +281,8 @@ function validateNumber(number) {
     let numberErrorDiv = document.getElementById("number-error");
     if (numberErrorDiv) {
         numberErrorDiv.textContent = "";
+        // add a red border to the input element to highlight error
+        numberErrorDiv.previousElementSibling.classList.remove("error-border");
     }
     // ensure the name is longer than 3
     if (number >= 1 && number <= 12) {
@@ -252,6 +291,8 @@ function validateNumber(number) {
     } else {
         // attempt to set the error message in the error div under the import
         if (numberErrorDiv) {
+            // add a red border to the input element to highlight error
+            numberErrorDiv.previousElementSibling.classList.add("error-border");
             numberErrorDiv.textContent =
                 "Invalid Input: Please enter a valid number between 1 & 12";
         } else {
@@ -268,14 +309,21 @@ function validateNumber(number) {
 }
 
 function validateLunch(lunchString) {
+    let lunchErrorDiv = document.getElementById("lunch-error");
+    // reset the state of the input pre-validation
+    if (lunchErrorDiv) {
+        lunchErrorDiv.previousElementSibling.classList.remove("error-border");
+        lunchErrorDiv.textContent = "";
+    }
     // check if the input is true or false then set the boolean withLunch to the corresponding value
     if (lunchString === "true") {
         withLunch = true;
     } else if (lunchString === "false") {
         withLunch = false;
     } else {
-        let lunchErrorDiv = document.getElementById("lunch-error");
         if (lunchErrorDiv) {
+            // add a red border to the input element to highlight error
+            lunchErrorDiv.previousElementSibling.classList.add("error-border");
             lunchErrorDiv.textContent =
                 "Invalid Input: Please select with or without lunch";
         } else {
@@ -294,6 +342,7 @@ function validateRoute(selectedRoute) {
     let routeErrorDiv = document.getElementById("route-error");
     if (routeErrorDiv) {
         routeErrorDiv.textContent = "";
+        routeErrorDiv.previousElementSibling.classList.remove("error-border");
     }
     // checks if the selected route is a valid option
     if (Object.keys(routeToPriceObject).includes(selectedRoute)) {
@@ -304,6 +353,8 @@ function validateRoute(selectedRoute) {
             // set the error message under the input
             routeErrorDiv.textContent =
                 "Invalid Input: Please select a valid route";
+            // add a red border to the input element to highlight error
+            routeErrorDiv.previousElementSibling.classList.add("error-border");
         } else {
             // send an alert if the error div is not found
             createAlert("Invalid Input: Please  select a valid route", "error");
@@ -317,14 +368,20 @@ function validateDiscount(code) {
     // remove old error if present
     let discountErrorDiv = document.getElementById("discount-code-error");
     if (discountErrorDiv) {
+        discountErrorDiv.previousElementSibling.classList.remove(
+            "error-border"
+        );
         discountErrorDiv.textContent = "";
     }
-    // create an array of just the codes and check if the code is in the array
-    const codeMap = discountCodes.map((discount) => discount.code);
-    if (codeMap.includes(code)) {
+   
+    if (discountCodes[code]) {
         discount = discountCodes[code];
     } else {
         if (discountErrorDiv) {
+            // add a red border to the input element to highlight error
+            discountErrorDiv.previousElementSibling.classList.add(
+                "error-border"
+            );
             discountErrorDiv.textContent = "The code entered is not valid";
         } else {
             // send an alert if the error div is not found
@@ -339,9 +396,10 @@ function validateDiscount(code) {
 function validateDate(chosenDate) {
     // remove old error if present
     let routeErrorDiv = document.getElementById("date-error");
-        if (routeErrorDiv) {
-            routeErrorDiv.textContent = ""
-        }
+    if (routeErrorDiv) {
+        routeErrorDiv.textContent = "";
+        routeErrorDiv.previousElementSibling.classList.remove("error-border");
+    }
     try {
         const formattedDate = new Date(chosenDate);
         if (formattedDate <= Date.now()) {
@@ -355,6 +413,8 @@ function validateDate(chosenDate) {
     } catch (error) {
         if (routeErrorDiv) {
             routeErrorDiv.textContent = error;
+            // add a red border to the input element to highlight error
+            routeErrorDiv.previousElementSibling.classList.add("error-border");
         } else {
             // send an alert if the error div is not found
             createAlert(error, "error");
@@ -364,13 +424,16 @@ function validateDate(chosenDate) {
 }
 
 function handleSubmit(event) {
+    // stop the default behaviour of the form
     event.preventDefault();
     let invalidInputs = [];
+    // loop through and check if all inputs have been validated
     for (let [input, value] of Object.entries(validatedObject)) {
         if (!value) {
             invalidInputs.push(input);
         }
     }
+    // if there are no invalid inputs
     if (invalidInputs.length < 1) {
         calculateTotalCost();
         let [routeModal, dateModal, numberModal, lunchModal] =
@@ -378,9 +441,12 @@ function handleSubmit(event) {
         routeModal.textContent = route;
         dateModal.textContent = new Date(date).toUTCString();
         numberModal.textContent = numberOfPeople;
-        lunchModal.textContent = withLunch;
+        // Use of ternary operator to make selction readable
+        lunchModal.textContent = withLunch ? "Yes" : "No";
+        // trigger the modal
         $("#booking-modal").modal().show();
     } else {
+        // show the users the inputs that need to be fixed
         createAlert(
             `Unable to submit form, please fix errors in: ${invalidInputs.join(
                 ", "

@@ -164,20 +164,30 @@ body {
 }
 
 #booking-form > div {
-  width: 45%;
+    width: 45%;
 }
 
 .form-footer {
-  justify-content: end;
-  gap: 2rem;
-  align-items: end;
+    justify-content: end;
+    gap: 2rem;
+    align-items: end;
 }
 
 .error-div {
-    color: red;
+    font-weight: 800;
+}
+
+.error-border {
+    border-width: 3px;
+    border-color: red;
 }
 
 #total-cost {
+    font-size: large;
+    font-weight: bold;
+}
+
+#amount-saved {
     font-size: large;
     font-weight: bold;
 }
@@ -199,6 +209,10 @@ body {
 @media (max-width: 768px) {
     .navbar {
         background: #1f1f1f;
+    }
+
+    #mainNavbar .navbar-brand {
+        font-size: 1.5rem;
     }
 
     #heroSection {
@@ -223,6 +237,13 @@ body {
     }
 
     #booking-form > div {
-      width: 100%;
+        width: 100%;
     }
+}
+
+@media (max-width: 576px) {
+    #mainNavbar .navbar-brand {
+        font-size: 1.3rem;
+    }
+
 }
