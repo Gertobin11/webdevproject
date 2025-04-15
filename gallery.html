@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Google Font -->
+        <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css?family=Raleway:100,300,500,700"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css?family=Questrial"
+            rel="stylesheet"
+        />
+
+        <!-- Bootstrap CSS -->
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+            crossorigin="anonymous"
+        />
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="static/css/style.css" />
+
+        <title>Wild Atlantic Tours</title>
+    </head>
+
+    <body>
+        <!-- navbar -->
+        <nav
+            id="mainNavbar"
+            class="navbar navbar-dark navbar-expand-md py-0 fixed-top"
+        >
+            <a href="index.html" class="navbar-brand">Wild Atlantic Tours</a>
+            <button
+                class="navbar-toggler"
+                data-toggle="collapse"
+                data-target="#navLinks"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navLinks">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a href="index.html" class="nav-link">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gallery.html" class="nav-link active" >GALLERY</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quiz.html" class="nav-link">QUIZ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="booking.html" class="nav-link">BOOK</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Main content -->
+        <!-- REQUIREMENTS - 
+        - Gallery of 4 or more images. When the user clicks an image, JavaScript to be
+        used to show some text relating to that image. 
+        - All pages must have an example of JavaScript to demonstrate manipulation of
+        the DOM.
+        - All pages are responsive
+        -->
+
+        <!-- Album of images from Bootstrap documentation https://getbootstrap.com/docs/4.0/examples/album/ -->
+        <main role="main">
+
+            <section class="jumbotron text-center">
+              <div class="container">
+                <h1 class="jumbotron-heading display-4">OUR ROUTES</h1>
+                <p class="lead text-muted">Explore the heart and soul of Ireland’s rugged west coast—where crashing waves meet ancient cliffs. Every bend in the road reveals a new adventure. From hidden beaches to windswept headlands, let the spirit of the Wild Atlantic Way inspire your next journey.</p>
+              </div>
+            </section>
+      
+        </main>
+
+        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title h1" id="exampleModalLabel">Title of route</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque tenetur, non voluptatum earum animi fugit consequatur ratione est ducimus nisi ea, maxime, voluptates nulla asperiores excepturi neque totam eligendi cum distinctio dolorem sed eveniet sit. Itaque quisquam blanditiis veritatis perspiciatis architecto consequuntur officiis atque. Quis tenetur voluptate nemo cumque sapiente iusto rem eaque asperiores atque minus, excepturi odit, eligendi facilis suscipit reprehenderit. Porro, et. Dignissimos assumenda reprehenderit, quibusdam dolorem dicta alias! Unde ipsam temporibus, excepturi quod esse eaque ducimus beatae!</p>
+                </div>
+                <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div> -->
+            </div>
+            </div>
+        </div>
+        
+
+
+
+            <!-- image gallery  section -->
+        <section>
+            <div id="gallerySection" class="container text-center mt-5 pb-5">
+            <h2 class="display-4">OUR ROUTES</h2>
+            <div class="row mt-4">
+                <div class="col-md-6 p-3">
+                <a href="" data-toggle="modal" data-target="#exampleModal">
+                    <!-- Photo by -->
+                    <img src="static/images/WAW_images/cilffs-of-moher.jpg" alt="" class="img-fluid d-md-inline">
+                </a>
+                <h3>Tralee - Kinsale</h3>
+                </div>
+                <div id="" class="col-md-6 p-3" >
+                <a href="">
+                    <!-- Photo by -->
+                    <img src="static/images/WAW_images/dunquin-harbour.jpg" alt="" class="img-fluid d-md-inline">
+                </a>
+                <h3>Killarney - Galway</h3>
+                </div>
+                <div id="" class="col-md-6 p-3">
+                <a href="">
+                <!-- Photo by  -->
+                <img src="static/images/WAW_images/pexels-kelly-1179532-2382681.jpg" alt="" class="img-fluid d-md-inline">
+                </a>
+                <h3>Ennis - Sligo</h3>
+                </div>
+                <div id="" class="col-md-6 p-3">
+                <a href="">
+                    <!-- Photo by  -->
+                    <img src="static/images/WAW_images/pexels-oskar-k-78567567-8685377.jpg" alt="" class="img-fluid d-md-inline">
+                </a>
+                <h3>Galway - Letterkenny</h3>
+                </div>
+            </div>
+            </div>
+    
+        </section>
+
+      
+
+
+
+
+
+        <!-- Footer -->
+
+        <section id="footer" class="bg-dark">
+            <div class="container text-white text-center py-2">
+                <p class="lead">All Right Reserved &copy MMXXV</p>
+            </div>
+        </section>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"
+        ></script>
+
+        <script>
+            // modal popup from bootstrap documentation
+            $('#myModal').on('shown.bs.modal', function () {
+                $('#myInput').trigger('focus')
+            })
+
+        </script>
+    </body>
+</html>
