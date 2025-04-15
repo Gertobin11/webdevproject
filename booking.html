@@ -33,7 +33,7 @@
         <!-- Custom CSS -->
         <link rel="stylesheet" href="static/css/style.css" />
 
-        <title>Wild Atlantic Tours</title>
+        <title>Wild Atlantic Tours | Booking</title>
     </head>
 
     <body>
@@ -71,7 +71,9 @@
 
         <section id="booking" class="pt-4">
             <form id="booking-form" class="pt-4">
-                <h1 class="z-3 text-white text-center w-100">Book Your Adventure now!</h1>
+                <h1 class="z-3 text-white text-center w-100">
+                    Book Your Adventure now!
+                </h1>
 
                 <!--- Input for fullname -->
                 <div class="mb-1">
@@ -158,10 +160,10 @@
                         required
                     >
                         <option selected disabled>Open to select route</option>
-                        <option value="1">Tralee - Kinsale</option>
-                        <option value="2">Killarney - Galway</option>
-                        <option value="3">Ennis - Sligo</option>
-                        <option value="4">Galway - Letterkenny</option>
+                        <option value="1">Tralee - Kinsale - €200pp</option>
+                        <option value="2">Killarney - Galway - €300pp</option>
+                        <option value="3">Ennis - Sligo - €250pp</option>
+                        <option value="4">Galway - Letterkenny - €250pp</option>
                     </select>
                     <div id="route-error" class="error-div"></div>
                 </div>
@@ -181,7 +183,7 @@
                     />
                     <div id="date-error" class="error-div"></div>
                 </div>
-
+                <!-- div for inputting the discount code -->
                 <div class="mb-1">
                     <div
                         class="d-flex justify-content-between align-items-end mb-2"
@@ -211,17 +213,20 @@
                     <div id="discount-code-error" class="error-div"></div>
                 </div>
 
-                <div class="d-flex form-footer w-100">
+                <!-- dynamically update this cost over div with js - using id to change text content -->
+                <div class="d-flex form-footer">
                     <div>
-                        <p class="mb-0">Grand Total</p>
-                        <p class="mb-0">€ <span id="total-cost"></span></p>
+                        <p class="mb-0">Amount Saved:</p>
+                        <p class="mb-0">€ <span id="amount-saved">0</span></p>
+                        <p class="mb-0">Grand Total:</p>
+                        <p class="mb-0">€ <span id="total-cost">0</span></p>
                     </div>
                     <button
                         id="submit-booking-button"
                         type="submit"
                         class="btn btn-success"
                     >
-                        Book
+                        Make Enquiry
                     </button>
                 </div>
             </form>
@@ -256,6 +261,7 @@
                             Your booking enquiry will be made once you confirm
                             that these are the details that you wish to Book
                         </p>
+                        <!-- table showing a breakdown of the booking enquiry -->
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
@@ -280,9 +286,16 @@
                                     <td>Lunch</td>
                                     <td id="lunch-modal"></td>
                                 </tr>
+                                <tr>
+                                    <td>Amount Saved</td>
+                                    <td id="amount-saved-modal"></td>
+                                </tr>
+                                <tr>
+                                    <td>Total</td>
+                                    <td id="total-cost-modal"></td>
+                                </tr>
                             </tbody>
                         </table>
-                    </div>
                     <div class="modal-footer">
                         <button
                             type="button"
@@ -291,8 +304,14 @@
                         >
                             Close
                         </button>
-                        <button type="button" class="btn btn-primary">
-                            Save changes
+                        <!-- button to simulate submitting the form-->
+                        <button
+                            id="handle-enquiry"
+                            type="button"
+                            class="btn btn-success"
+                            data-dismiss="modal"
+                        >
+                            Confirm Enquiry
                         </button>
                     </div>
                 </div>
