@@ -261,17 +261,20 @@
             }, 2000);
         </script>
         <script>
-            // appropriate greeting based on time of day
+            // script to change modal to appropriate greeting based on time of day
             const hour = new Date().getHours();
             let greeting;
 
-            if (hour < 12) {
-                greeting = "Good morning!";
-            } else if (hour < 18) {
-                greeting = "Good afternoon!";
-            } else {
-                greeting = "Good evening!";
-            }
+            switch (true) {
+                case (hour < 12):
+                    greeting = "Good morning!";
+                    break;
+                case (hour < 18):
+                    greeting = "Good afternoon!";
+                    break;
+                default:
+            greeting = "Good evening!";
+    }
             document.getElementById('greeting').textContent = greeting;
         </script>
     </body>
