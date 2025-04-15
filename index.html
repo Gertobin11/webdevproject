@@ -35,6 +35,26 @@
 
         <title>Wild Atlantic Tours</title>
     </head>
+    <!-- INDEX PAGE MODAL -->
+    <div class="modal fade" id="indexModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title h1 text-center" id="indexModelLabel">Want a discount on your tour?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-center lead" id="">Play our quiz NOW to grab yourself a discount on any of our tours!!</p>
+                <p class="text-center lead" id="">The better you do, the more you get off!</p>
+            </div>
+            <a href="quiz.html" class="text-center">
+                <button type="button" class="btn btn-primary m-4">Play the quiz</button>
+            </a>
+        </div>
+        </div>
+    </div>
 
     <body>
         <!-- navbar -->
@@ -87,12 +107,11 @@
                 <p class="text-uppercase display-4 d-none d-md-block">
                     Unleash Your Wild on the Atlantic Coast.
                 </p>
-                <button
-                    id="bookNow"
-                    class="btn btn-lg btn-primary px-5 btn-secondary p-3"
-                >
-                    BOOK NOW
-                </button>
+                <a href="booking.html">
+                    <button id="bookNow" class="btn btn-lg btn-primary px-5 btn-secondary p-3">
+                        BOOK NOW
+                    </button>
+                </a>
             </div>
         </section>
         <!-- Welcome section -->
@@ -101,12 +120,9 @@
                 WELCOME TO WILD ATLANTIC TOURS
             </h2>
             <div class="row mt-4">
-                <p class="lead">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Dolorem illo temporibus aliquid consequuntur nostrum quas
-                    officia, exercitationem perferendis itaque esse quis laborum
-                    amet porro? Autem harum soluta cupiditate reiciendis animi.
-                </p>
+                <p class="lead">Discover the magic of Ireland’s west coast with Wild Atlantic Way Tours, your gateway to one of the world’s most breathtaking coastal journeys. Stretching over 2,500 km from the rugged cliffs of Donegal to the colorful harbors of West Cork, the Wild Atlantic Way is a land of untamed beauty, rich heritage, and unforgettable experiences.</p>
+                <p class="lead">Whether you're seeking dramatic landscapes, charming seaside villages, ancient ruins, or authentic Irish culture, our expertly curated tours offer something for every traveler. From half-day escapes to multi-day adventures, we make it easy to explore hidden gems and iconic sights—stress-free and at your own pace.</p>         
+                <p class="lead">Let us take you off the beaten path and show you the heart and soul of Ireland's wild west. Your unforgettable journey starts here.</p>
             </div>
         </section>
 
@@ -229,5 +245,15 @@
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"
         ></script>
+
+
+        <script>
+            // modal popup
+            setTimeout(() => {
+                // alert("Hello, World!");
+                $('#indexModal').modal()
+            }, 2000);
+
+        </script>
     </body>
 </html>
