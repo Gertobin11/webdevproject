@@ -76,12 +76,7 @@ body {
     font-family: "Nunito", sans-serif;
 }
 
-/* GALLERY */
-/* https://www.codewithrandom.com/2023/10/20/image-hover-border-effect-css/ */
-/* #gallerySection img:hover {
-    border: 8px solid #6b4d57;
-    transition-duration: 0.4s;
-} */
+
 
 
 /* GALLERY */
@@ -220,6 +215,7 @@ body {
     font-weight: 500;
 }
 
+
 /* MEDIA QUERIES */
 
 @media (max-width: 768px) {
@@ -254,10 +250,6 @@ body {
 
     #booking-form > div {
         width: 100%;
-    }
-    .alert {
-        width: 100% !important;
-        top: 45px;
     }
 }
 
