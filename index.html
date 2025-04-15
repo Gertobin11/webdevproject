@@ -38,8 +38,9 @@
     <!-- INDEX PAGE MODAL -->
     <div class="modal fade" id="indexModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content">  
             <div class="modal-header">
+            <h3 id="greeting" class="text-center">Greetings</h3>
             <h5 class="modal-title h1 text-center" id="indexModelLabel">Want a discount on your tour?</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -246,14 +247,25 @@
             crossorigin="anonymous"
         ></script>
 
-
         <script>
             // modal popup
             setTimeout(() => {
-                // alert("Hello, World!");
                 $('#indexModal').modal()
             }, 2000);
+        </script>
+        <script>
+            // appropriate greeting based on time of day
+            const hour = new Date().getHours();
+            let greeting;
 
+            if (hour < 12) {
+                greeting = "Good morning!";
+            } else if (hour < 18) {
+                greeting = "Good afternoon!";
+            } else {
+                greeting = "Good evening!";
+            }
+            document.getElementById('greeting').textContent = greeting;
         </script>
     </body>
 </html>
