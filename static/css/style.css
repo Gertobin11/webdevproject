@@ -205,10 +205,19 @@ body {
 }
 
 .alert {
-    position: absolute;
+    position: fixed;
     top: 60px;
     right: 0;
     z-index: 1000;
+    width: 50% !important;
+}
+
+/* MODAL STYLES */
+
+.modal-header {
+    background-color: #006c83;
+    color: white;
+    font-weight: 500;
 }
 
 /* MEDIA QUERIES */
@@ -245,6 +254,10 @@ body {
 
     #booking-form > div {
         width: 100%;
+    }
+    .alert {
+        width: 100% !important;
+        top: 45px;
     }
 }
 

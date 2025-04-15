@@ -195,7 +195,6 @@ function createAlert(message, type) {
         "d-flex",
         "justify-content-between",
         "align-items-center",
-        "w-25"
     );
     div.setAttribute("role", "alert");
     document.body.appendChild(div);
