@@ -194,7 +194,7 @@ function createAlert(message, type) {
         `alert-${type}`,
         "d-flex",
         "justify-content-between",
-        "align-items-center",
+        "align-items-center"
     );
     div.setAttribute("role", "alert");
     document.body.appendChild(div);
@@ -203,11 +203,17 @@ function createAlert(message, type) {
     span.textContent = message;
     div.appendChild(span);
 
+    // create a close button for the alert
     const button = document.createElement("button");
     button.textContent = "X";
     button.classList.add("btn", `btn-${type}`, "text-black");
     button.addEventListener("click", () => document.body.removeChild(div));
     div.appendChild(button);
+
+    // autohide alert after 5 seconds
+    setTimeout(() => {
+        document.body.removeChild(div);
+    }, 5000);
 }
 
 function validateFullname(enteredFullname) {
@@ -372,7 +378,7 @@ function validateDiscount(code) {
         );
         discountErrorDiv.textContent = "";
     }
-   
+
     if (discountCodes[code]) {
         discount = discountCodes[code];
     } else {
