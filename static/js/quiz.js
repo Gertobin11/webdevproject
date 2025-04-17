@@ -17,7 +17,7 @@ async function loadStartPage() {
         );
     } catch {
         // remove the start button so we can display the error
-        game.replaceChildren()
+        game.replaceChildren();
 
         // if there is an error with the API, give the user the chance to reload and explain the issue
         let heading = generateHeading("Ooooops");
@@ -39,9 +39,9 @@ async function loadStartPage() {
     }
 }
 // since we are using an async function from a top level module, we need to wrap it in an anonymous async function
-(async function() {
-    await loadStartPage()
-  })();
+(async function () {
+    await loadStartPage();
+})();
 
 // an array of the discount codes that the user can win
 const discountCodes = [
@@ -127,7 +127,7 @@ function generateButton(text) {
 }
 
 function generateOptionButton(text, submitButton) {
-    // helper function to create a button 
+    // helper function to create a button
     const button = generateButton(text);
     button.classList.add("btn", "z-3", "my-1", "options", "w-50");
     // the submit button is passed as it should only be enabled after an option is selected
@@ -219,7 +219,7 @@ function displayQuestion(question) {
 
         const submitButton = generateSubmitButton(question);
 
-        // display the four options 
+        // display the four options
         for (let option of question.options) {
             const optionButton = generateOptionButton(option, submitButton);
             game.appendChild(optionButton);
