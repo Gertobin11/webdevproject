@@ -1,8 +1,3 @@
-// modal popup from bootstrap documentation
-$('#myModal').on('shown.bs.modal', function () {
-    $('#myInput').trigger('focus')
-})
-
 // custom javascript to change text in modal
 document.getElementById("traKinImage").onclick = function() {
     document.getElementById("galleryModelLabel").innerText = "Wild Atlantic Way: Tralee to Kinsale Route"
