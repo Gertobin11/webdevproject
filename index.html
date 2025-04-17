@@ -2,10 +2,21 @@
 <html lang="en">
     <head>
         <!-- Required meta tags -->
+        <!-- Viewport Meta Tag -->
         <meta charset="utf-8" />
         <meta
             name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <!-- Meta Description -->
+        <meta 
+            name="description" 
+            content="Discover the stunning beauty of Ireland’s Wild Atlantic Way with guided tours by Wild Atlantic Tours. Small groups, epic views, unforgettable experiences."
+        />
+        <!-- meta keywords -->
+        <meta 
+            name="keywords" 
+            content="Wild Atlantic Way tours, Ireland tours, west coast Ireland, Irish coastal tours, guided tours Ireland, Wild Atlantic Tours, scenic Ireland travel"
         />
 
         <!-- Google Font -->
@@ -33,7 +44,7 @@
         <!-- Custom CSS -->
         <link rel="stylesheet" href="static/css/style.css" />
 
-        <title>Wild Atlantic Tours</title>
+        <title>Wild Atlantic Tours – Explore Ireland's West Coast</title>
     </head>
     <!-- INDEX PAGE MODAL -->
     <div class="modal fade" id="indexModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -175,42 +186,6 @@
             </div>
         </section>
 
-        <!-- <section class="p-5">
-            <h2 class="text-center mt-4 display-4">
-                LIST OF SERVICES PROVIDED
-            </h2>
-            <div class="container text-center mt-4 mb-4">
-                <li class="lead">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Fugit voluptate et accusamus assumenda? Vel, voluptatem
-                    cumque illo odit possimus ipsa mollitia nisi itaque, tempora
-                    harum repellendus veniam necessitatibus praesentium
-                    nesciunt.
-                </li>
-                <li class="lead">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Fugit voluptate et accusamus assumenda? Vel, voluptatem
-                    cumque illo odit possimus ipsa mollitia nisi itaque, tempora
-                    harum repellendus veniam necessitatibus praesentium
-                    nesciunt.
-                </li>
-                <li class="lead">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Fugit voluptate et accusamus assumenda? Vel, voluptatem
-                    cumque illo odit possimus ipsa mollitia nisi itaque, tempora
-                    harum repellendus veniam necessitatibus praesentium
-                    nesciunt.
-                </li>
-                <li class="lead">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Fugit voluptate et accusamus assumenda? Vel, voluptatem
-                    cumque illo odit possimus ipsa mollitia nisi itaque, tempora
-                    harum repellendus veniam necessitatibus praesentium
-                    nesciunt.
-                </li>
-            </div>
-        </section> -->
-
         <!-- IMAGE SECTION 2 -->
 
         <section>
@@ -252,6 +227,9 @@
             </div>
         </footer>
 
+
+        <!-- external script to change modal to appropriate greeting based on time of day -->
+        <script src="static/js/index.js"></script>
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script
@@ -269,29 +247,5 @@
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"
         ></script>
-
-        <script>
-            // modal popup
-            setTimeout(() => {
-                $('#indexModal').modal()
-            }, 2000);
-        </script>
-        <script>
-            // script to change modal to appropriate greeting based on time of day
-            const hour = new Date().getHours();
-            let greeting;
-
-            switch (true) {
-                case (hour < 12):
-                    greeting = "Good morning!";
-                    break;
-                case (hour < 18):
-                    greeting = "Good afternoon!";
-                    break;
-                default:
-            greeting = "Good evening!";
-    }
-            document.getElementById('greeting').textContent = greeting;
-        </script>
     </body>
 </html>
