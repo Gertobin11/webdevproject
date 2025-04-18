@@ -78,10 +78,10 @@ async function getQuestions() {
         questions.push({
             question: question.question,
             correctAnswer: question["correct_answer"],
-            options: [
+            options: getRandomQuestions([
                 question["correct_answer"],
                 ...question["incorrect_answers"],
-            ],
+            ], 4),
         });
     }
 
