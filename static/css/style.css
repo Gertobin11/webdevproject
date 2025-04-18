@@ -231,8 +231,13 @@ body {
         min-height: 500px;
     }
 
-    #heroSection h1 {
-        font-size: 4rem;
+    #heroSection h2 {
+        font-size: 2rem;
+    }
+
+    #bookNow {
+        font-size: 1rem;
+        padding: .75rem !important;
     }
 
     .options {
