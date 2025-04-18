@@ -11,6 +11,7 @@ let total = document.getElementById("total-cost");
 let amountSavedSpan = document.getElementById("amount-saved");
 let totalCostModal = document.getElementById("total-cost-modal");
 let amountSavedModal = document.getElementById("amount-saved-modal");
+let alertCount = 0;
 
 let validatedObject = {
     route: false,
@@ -188,6 +189,7 @@ const discountCodes = {
  */
 
 function createAlert(message, type) {
+    alertCount += 1;
     const div = document.createElement("div");
     div.classList.add(
         "alert",
@@ -197,6 +199,7 @@ function createAlert(message, type) {
         "align-items-center"
     );
     div.setAttribute("role", "alert");
+    div.id = `alert-${alertCount}`;
     document.body.appendChild(div);
 
     let span = document.createElement("span");
@@ -212,7 +215,10 @@ function createAlert(message, type) {
 
     // autohide alert after 5 seconds
     setTimeout(() => {
-        document.body.removeChild(div);
+        // check to see if the div is still on the pae and has not been closed
+        if (document.getElementById(div.id)) {
+            document.body.removeChild(div);
+        }
     }, 5000);
 }
 
